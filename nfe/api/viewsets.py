@@ -1,15 +1,16 @@
-from rest_framework.viewsets import ModelViewSet
-from rest_framework.decorators import action
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 
 
-class NfeViewSet(ModelViewSet):
-    queryset = None
-    serializer_class = None
+class NfeViewSet(APIView):
+    permission_classes = (AllowAny,)
 
-    @action(detail=False, methods=['POST'])
-    def enviar(self, request):
-        return {
-            'status': 'Autorizado',
-            'codigo_status': '100',
-            'motivo': 'Autorizado o uso de NFe 0000232',
+    def post(self, request):
+        json_nfe = request.data
+        print(json_nfe)
+        print(type(json_nfe))
+        response = {
+            "sucesso": True
         }
+        return Response(response, status=200)
