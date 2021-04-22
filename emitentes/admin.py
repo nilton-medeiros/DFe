@@ -3,8 +3,8 @@ from .models import Emitente
 
 
 class EmitenteAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'token', 'cnpj', 'cpf', 'municipio', 'uf', 'telefones', 'email', 'emissoes_status',
-                    'emitente_status')
+    list_display = ('nome', 'token', 'cnpj', 'cpf', 'municipio', 'uf', 'telefones', 'email', 'emissoes_suspensas',
+                    'is_active')
 
 
 admin.site.register(Emitente, EmitenteAdmin)

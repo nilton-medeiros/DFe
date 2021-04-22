@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import IsAuthenticated
 
 
 def enviar_nfe(data, ref):
@@ -24,7 +24,7 @@ def enviar_nfe(data, ref):
 
 
 class NfeViewSet(APIView):
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAuthenticated,)
 
     # Recebe o JSON da NFe, gera o XML, Assina, Valida e envia à Sefaz se não houver erro
     def post(self, request):
