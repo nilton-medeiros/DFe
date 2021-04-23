@@ -7,15 +7,6 @@ class EmitenteSerializer(serializers.ModelSerializer):
         model = models.Emitente
         fields = ('id', 'nome')
 
-        # if model.nfe_emite:
-        #     tup3 = ('nfe_serie', 'nfe_numero', 'nfe_serie_homologacao', 'nfe_numero_homologacao')
-        # if model.nfce_emite:
-        #     tup4 = ('nfce_serie', 'nfce_numero', 'nfce_serie_homologacao', 'nfce_numero_homologacao')
-        # if model.cte_emite:
-        #     tup5 = ('cte_serie', 'cte_numero', 'cte_serie_homologacao', 'cte_numero_homologacao')
-        # if model.mdfe_emite:
-        #     tup6 = ('mdfe_serie', 'mdfe_numero', 'mdfe_serie_homologacao', 'mdfe_numero_homologacao')
-
     def to_representation(self, instance):
         data = {
             'id': instance.id,
@@ -29,5 +20,26 @@ class EmitenteSerializer(serializers.ModelSerializer):
 
         if instance.nfe_emite:
             data['nfe_serie'] = instance.nfe_serie
+            data['nfe_numero'] = instance.nfe_numero
+            data['nfe_serie_homologacao'] = instance.nfe_serie_homologacao
+            data['nfe_numero_homologacao'] = instance.nfe_numero_homologacao
+
+        if instance.nfce_emite:
+            data['nfce_serie'] = instance.nfce_serie
+            data['nfce_numero'] = instance.nfce_numero
+            data['nfce_serie_homologacao'] = instance.nfce_serie_homologacao
+            data['nfce_numero_homologacao'] = instance.nfce_numero_homologacao
+
+        if instance.cte_emite:
+            data['cte_serie'] = instance.cte_serie
+            data['cte_numero'] = instance.cte_numero
+            data['cte_serie_homologacao'] = instance.cte_serie_homologacao
+            data['cte_numero_homologacao'] = instance.cte_numero_homologacao
+
+        if instance.mdfe_emite:
+            data['mdfe_serie'] = instance.mdfe_serie
+            data['mdfe_numero'] = instance.mdfe_numero
+            data['mdfe_serie_homologacao'] = instance.mdfe_serie_homologacao
+            data['mdfe_numero_homologacao'] = instance.mdfe_numero_homologacao
 
         return data
