@@ -42,7 +42,7 @@ class EmitenteSerializer(serializers.ModelSerializer):
             data['mdfe_serie_homologacao'] = instance.mdfe_serie_homologacao
             data['mdfe_numero_homologacao'] = instance.mdfe_numero_homologacao
 
-        data['certificado_a1'] = instance.certificado_a1
-        data['logotipo_dfe'] = instance.logotipo_dfe
+        data['certificado_a1'] = instance.certificado_a1.path
+        data['logotipo_dfe'] = instance.logotipo_dfe.path
 
         return data
