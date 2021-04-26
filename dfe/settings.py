@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'dfe.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.dfe')
 DATABASES = {'default': config(
     'DATABASE_URL', default=default_dburl, cast=dburl), }
 # DATABASES = {
@@ -140,3 +140,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = 'client_files'
+
+MEDIA_URL = '/media/'

@@ -4,6 +4,17 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+def emitente_upload_file(instance, filename):
+    if instance.cnpj:
+        doc = instance.cnpj
+    else:
+        doc = instance.cpf
+
+    path: str = f"{doc}/media/"
+    path += filename
+    return path
+
+
 class Emitente(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.RESTRICT)
     nome = models.CharField('Nome', max_length=60)
@@ -19,6 +30,8 @@ class Emitente(models.Model):
     cep = models.CharField('CEP', max_length=8)
     telefones = models.CharField(max_length=60, null=True, blank=True)
     email = models.EmailField('E-mail', max_length=100, null=True, blank=True)
+    certificado_a1 = models.FileField(upload_to=emitente_upload_file, null=True, blank=True)
+    logotipo_dfe = models.ImageField(upload_to=emitente_upload_file, null=True, blank=True)
 
     # DFe's - Controle de Emissões, séries e numeração ambiente Produção & Homologação (testes)
 
@@ -67,5 +80,5 @@ class Emitente(models.Model):
                                     help_text='Emitentes inativos não aparecem no sistema (api)')
     created_at = models.DateField('Cadastrado Em', auto_now_add=True)
 
-    # def __str__(self):
-    #     return self.nome
+    def __str__(self):
+        return self.nome

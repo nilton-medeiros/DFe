@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 def enviar_nfe(data, ref):
     if type(data) == dict:
         # processar json-dict, gerar xml, assinar, validar e enviar a Sefaz via assíncrona
+
         respond = {
             "http_code": 202,
             "cnpj_emitente": "07504505000132",

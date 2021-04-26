@@ -22,3 +22,6 @@ class EmitenteViewSet(viewsets.ModelViewSet):
 
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
+
+    def partial_update(self, request, *args, **kwargs):
+        return super(EmitenteViewSet, self).partial_update(request, *args, **kwargs)

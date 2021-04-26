@@ -5,7 +5,7 @@ from emitentes import models
 class EmitenteSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Emitente
-        fields = ('id', 'nome')
+        fields = ('id', 'nome', 'certificado_a1', 'logotipo_dfe')
 
     def to_representation(self, instance):
         data = {
@@ -41,5 +41,8 @@ class EmitenteSerializer(serializers.ModelSerializer):
             data['mdfe_numero'] = instance.mdfe_numero
             data['mdfe_serie_homologacao'] = instance.mdfe_serie_homologacao
             data['mdfe_numero_homologacao'] = instance.mdfe_numero_homologacao
+
+        data['certificado_a1'] = instance.certificado_a1
+        data['logotipo_dfe'] = instance.logotipo_dfe
 
         return data

@@ -4,11 +4,14 @@ from uuid import uuid4
 from emitentes.models import Emitente
 
 
-def upload_file_nfe(instance, filename):
-    if Emitente.cnpj:
-        doc = Emitente.cnpj
+def nfe_upload_file(instance, filename):
+    emitente = Emitente.objects.get(pk=instance.emitente_id)
+
+    if emitente.cnpj:
+        doc = emitente.cnpj
     else:
-        doc = Emitente.cpf
+        doc = emitente.cpf
+
     path: str = f"{doc}/nfe/{filename[filename.rfind('.')+1:].upper()}s/"
     path += str(instance.data_emissao.year) + '/' + str(instance.data_emissao.month) + '/' + filename
     return path
@@ -24,12 +27,20 @@ class Nfe(models.Model):
     numero_carta_correcao = models.IntegerField('Número Carta Cor.', default=0)
     chave = models.CharField('Chave NFe', max_length=44)
     data_emissao = models.DateField('Emitido Em')
-    situacao = models.CharField('Situação', max_length=25)
+
+    SITUATION_STATUS = (
+        ('PRO', 'processando_autorizacao'),
+        ('AUT', 'autorizado'),
+        ('CAN', 'cancelado'),
+        ('ERR', 'erro_autorizacao'),
+        ('DEN', 'denegado'),
+    )
+    situacao = models.CharField('Situação', max_length=3, choices=SITUATION_STATUS)
     status_sefaz = models.CharField('Status Sefaz', max_length=3)
     mensagem_sefaz = models.CharField('Mensagem Sefaz', max_length=300)
-    url_xml_nfe = models.FileField(upload_to=upload_file_nfe, null=True, blank=True)
-    url_pdf_nfe = models.FileField(upload_to=upload_file_nfe, null=True, blank=True)
-    url_xml_cancelado = models.FileField(upload_to=upload_file_nfe, null=True, blank=True)
-    url_pdf_cancelado = models.FileField(upload_to=upload_file_nfe, null=True, blank=True)
-    url_xml_carta_correcao = models.FileField(upload_to=upload_file_nfe, null=True, blank=True)
-    url_pdf_carta_correcao = models.FileField(upload_to=upload_file_nfe, null=True, blank=True)
+    url_xml_nfe = models.FileField(upload_to=nfe_upload_file, null=True, blank=True)
+    url_pdf_nfe = models.FileField(upload_to=nfe_upload_file, null=True, blank=True)
+    url_xml_cancelado = models.FileField(upload_to=nfe_upload_file, null=True, blank=True)
+    url_pdf_cancelado = models.FileField(upload_to=nfe_upload_file, null=True, blank=True)
+    url_xml_carta_correcao = models.FileField(upload_to=nfe_upload_file, null=True, blank=True)
+    url_pdf_carta_correcao = models.FileField(upload_to=nfe_upload_file, null=True, blank=True)

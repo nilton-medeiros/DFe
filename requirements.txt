@@ -10,6 +10,7 @@ eight==1.0.1
 future==0.18.2
 idna==2.10
 lxml==4.6.3
+Pillow==8.2.0
 pycparser==2.20
 PyNFe==0.4
 pyOpenSSL==19.1.0
