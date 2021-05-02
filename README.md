@@ -30,8 +30,24 @@ git clone https://github.com/nilton-medeiros/DFe.git
 cd DFe
 python3 -m venv .venv
 source .venv/bin/activate
+
+# Dev
+pip install -r requirements/dev.txt
+
+# Produção
 pip install -r requirements.txt
+
 python contrib/env_gen.py
 python manage.py migrate
 python manage.py createsuperuser --username="admin" --email=""
 ```
+
+## Doc
+
+Documentação usando [drf-yasg](https://drf-yasg.readthedocs.io/en/stable).
+
+
+```
+http://localhost:8000/swagger/
+```
+
