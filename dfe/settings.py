@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-from decouple import config, Csv
+
+from decouple import Csv, config
 from dj_database_url import parse as dburl
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -55,7 +56,7 @@ DEV_INSTALLED_APPS = [
 ]
 
 if DEBUG:
-    INSTALLED_APPS += DEV_INSTALLED_APPS 
+    INSTALLED_APPS += DEV_INSTALLED_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

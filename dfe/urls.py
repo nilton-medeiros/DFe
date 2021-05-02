@@ -1,8 +1,8 @@
-from django.urls import include, path
-from django.contrib import admin
-from rest_framework import routers
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import include, path
+from rest_framework import routers
 
 from emitentes.api.viewsets import EmitenteViewSet
 from nfe.api.viewsets import NfeViewSet

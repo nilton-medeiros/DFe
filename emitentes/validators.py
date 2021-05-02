@@ -3,7 +3,7 @@ from rest_framework import serializers
 
 def validate_certificado_a1(value):
     if not value:
-        raise serializers.ValidationError('Certificado A1 não pode estar vazio')
+        raise serializers.ValidationError('Certificado A1 não pode estar vazio')  # noqa E501
     return value
 
 

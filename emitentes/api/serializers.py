@@ -4,8 +4,8 @@ from emitentes import models, validators
 
 
 class NFeEmiteSerializer(serializers.ModelSerializer):
-    certificado_a1 = serializers.FileField(validators=[validators.validate_certificado_a1])
-    logotipo_dfe = serializers.FileField(validators=[validators.validate_logotipo_dfe])
+    certificado_a1 = serializers.FileField(validators=[validators.validate_certificado_a1])  # noqa E501
+    logotipo_dfe = serializers.FileField(validators=[validators.validate_logotipo_dfe])  # noqa E501
 
     class Meta:
         model = models.Emitente
@@ -20,8 +20,8 @@ class NFeEmiteSerializer(serializers.ModelSerializer):
 
 
 class NFCeEmiteSerializer(serializers.ModelSerializer):
-    certificado_a1 = serializers.FileField(validators=[validators.validate_certificado_a1])
-    logotipo_dfe = serializers.FileField(validators=[validators.validate_logotipo_dfe])
+    certificado_a1 = serializers.FileField(validators=[validators.validate_certificado_a1])  # noqa E501
+    logotipo_dfe = serializers.FileField(validators=[validators.validate_logotipo_dfe])  # noqa E501
 
     class Meta:
         model = models.Emitente
@@ -36,8 +36,8 @@ class NFCeEmiteSerializer(serializers.ModelSerializer):
 
 
 class CTeEmiteSerializer(serializers.ModelSerializer):
-    certificado_a1 = serializers.FileField(validators=[validators.validate_certificado_a1])
-    logotipo_dfe = serializers.FileField(validators=[validators.validate_logotipo_dfe])
+    certificado_a1 = serializers.FileField(validators=[validators.validate_certificado_a1])  # noqa E501
+    logotipo_dfe = serializers.FileField(validators=[validators.validate_logotipo_dfe])  # noqa E501
 
     class Meta:
         model = models.Emitente
@@ -52,8 +52,8 @@ class CTeEmiteSerializer(serializers.ModelSerializer):
 
 
 class MDFeEmiteSerializer(serializers.ModelSerializer):
-    certificado_a1 = serializers.FileField(validators=[validators.validate_certificado_a1])
-    logotipo_dfe = serializers.FileField(validators=[validators.validate_logotipo_dfe])
+    certificado_a1 = serializers.FileField(validators=[validators.validate_certificado_a1])  # noqa E501
+    logotipo_dfe = serializers.FileField(validators=[validators.validate_logotipo_dfe])  # noqa E501
 
     class Meta:
         model = models.Emitente
@@ -68,8 +68,8 @@ class MDFeEmiteSerializer(serializers.ModelSerializer):
 
 
 class EmitenteSerializer(serializers.ModelSerializer):
-    certificado_a1 = serializers.FileField(validators=[validators.validate_certificado_a1])
-    logotipo_dfe = serializers.FileField(validators=[validators.validate_logotipo_dfe])
+    certificado_a1 = serializers.FileField(validators=[validators.validate_certificado_a1])  # noqa E501
+    logotipo_dfe = serializers.FileField(validators=[validators.validate_logotipo_dfe])  # noqa E501
 
     class Meta:
         model = models.Emitente
@@ -95,9 +95,9 @@ class EmitenteSerializer(serializers.ModelSerializer):
         for emit in 'nfe_emite nfce_emite cte_emite mdfe_emite'.split():
             base_name = emit.split('_')[0]
             if getattr(instance, emit):
-                data[f'{base_name}_serie'] = getattr(instance, f'{base_name}_serie')
-                data[f'{base_name}_numero'] = getattr(instance, f'{base_name}_numero')
-                data[f'{base_name}_serie_homologacao'] = getattr(instance, f'{base_name}_serie_homologacao')
-                data[f'{base_name}_numero_homologacao'] = getattr(instance, f'{base_name}_numero_homologacao')
+                data[f'{base_name}_serie'] = getattr(instance, f'{base_name}_serie')  # noqa E501
+                data[f'{base_name}_numero'] = getattr(instance, f'{base_name}_numero')  # noqa E501
+                data[f'{base_name}_serie_homologacao'] = getattr(instance, f'{base_name}_serie_homologacao')  # noqa E501
+                data[f'{base_name}_numero_homologacao'] = getattr(instance, f'{base_name}_numero_homologacao')  # noqa E501
 
         return data
