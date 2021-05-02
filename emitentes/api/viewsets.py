@@ -40,18 +40,18 @@ class EmitenteViewSet(viewsets.ModelViewSet):
     def partial_update(self, request, *args, **kwargs):
         return super(EmitenteViewSet, self).partial_update(request, *args, **kwargs)
 
-    @action(detail=True, url_path='nfe-emit', name="nfe-emit", methods=['put'])
+    @action(detail=True, url_path='nfe-emit', name="nfe-emit", methods=['get', 'put'])
     def nfe_emit(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
 
-    @action(detail=True, url_path='nfce-emit', name="nfce-emit", methods=['put'])
+    @action(detail=True, url_path='nfce-emit', name="nfce-emit", methods=['get', 'put'])
     def nfce_emit(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
 
-    @action(detail=True, url_path='cte-emit', name="cte-emit", methods=['put'])
+    @action(detail=True, url_path='cte-emit', name="cte-emit", methods=['get', 'put'])
     def cte_emit(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
 
-    @action(detail=True, url_path='mdfe-emit', name="mdfe-emit", methods=['put'])
+    @action(detail=True, url_path='mdfe-emit', name="mdfe-emit", methods=['get', 'put'])
     def mdfe_emit(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
