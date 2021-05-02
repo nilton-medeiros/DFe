@@ -50,6 +50,13 @@ INSTALLED_APPS = [
     'nfe',
 ]
 
+DEV_INSTALLED_APPS = [
+    'django_extensions',
+]
+
+if DEBUG:
+    INSTALLED_APPS += DEV_INSTALLED_APPS 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
