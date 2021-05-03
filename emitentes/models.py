@@ -2,13 +2,11 @@ from uuid import uuid4
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import ForeignKey, CharField
 
 
 def emitente_upload_file(instance, filename):
-    if instance.cnpj:
-        doc = instance.cnpj
-    else:
-        doc = instance.cpf
+    doc = instance.cnpj if instance.cnpj else instance.cpf
 
     path: str = f"{doc}/media/"
     path += filename
@@ -16,7 +14,7 @@ def emitente_upload_file(instance, filename):
 
 
 class Emitente(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.RESTRICT)
+    user: ForeignKey = models.ForeignKey(User, on_delete=models.RESTRICT)
     nome = models.CharField('Nome', max_length=60)
     cnpj = models.CharField('CNPJ', max_length=14, null=True, blank=True)
     inscricao_estadual = models.CharField('Inscrição Estadual', max_length=14, null=True, blank=True)
@@ -31,6 +29,8 @@ class Emitente(models.Model):
     telefones = models.CharField(max_length=60, null=True, blank=True)
     email = models.EmailField('E-mail', max_length=100, null=True, blank=True)
     certificado_a1 = models.FileField(upload_to=emitente_upload_file, null=True, blank=True)
+    certificado_pw = models.CharField('Senha do Certificado', max_length=128, null=True, blank=True)
+    certificado_validade = models.DateTimeField('Validade do Certificado', null=True, blank=True)
     logotipo_dfe = models.ImageField(upload_to=emitente_upload_file, null=True, blank=True)
 
     # DFe's - Controle de Emissões, séries e numeração ambiente Produção & Homologação (testes)
@@ -59,26 +59,25 @@ class Emitente(models.Model):
     mdfe_serie_homologacao = models.IntegerField('Série MDFe em homologação', default=0)
     mdfe_numero_homologacao = models.IntegerField('Número MDFe em homologação', default=0)
 
-    # Token de autenticação enviado ao Emitente/ERP/TMS para acesso a API
-
-    token = models.UUIDField(default=uuid4, editable=False)
-
     # Limites: Número de créditos restantes de solicitações (requests) para o período atual, decrescente
     requests_credit = models.IntegerField('Crédito Requisições', default=100)
     # Número de segundos inicial da contagem do cronômetro até 60 segundos para até 100 solicitações
-    requests_timer = models.IntegerField('Cronômetro de Requisições', default=0)
+    requests_timer = models.IntegerField('Cronômetro de Requisições', default=0,
+                                         help_text='Limite de 60 segundos para até 100 solicitações')
 
     """
     emissoes_suspensas: Se ativo, suspende as emissões dos DFes acima selecionados.
     Motivos: 
         - Manutenção
-        - Suspensão de um ou mais serviços solicitado pelo emitente
+        - Suspensão dos serviços solicitado pelo emitente
         - Cobrança: Falta de pagamento
     """
     emissoes_suspensas = models.BooleanField('Suspender Emissões', default=False)
     is_active = models.BooleanField('Emitente Ativo', default=True,
                                     help_text='Emitentes inativos não aparecem no sistema (api)')
     created_at = models.DateField('Cadastrado Em', auto_now_add=True)
+    updated_at = models.DateTimeField('Alterado Em', auto_now=True)
 
     def __str__(self):
-        return self.nome
+        doc = self.cnpj if self.cnpj else self.cpf
+        return f"{doc} - {self.nome}"

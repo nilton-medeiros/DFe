@@ -3,7 +3,7 @@ from .models import Nfe
 
 
 class NfeAdmin(admin.ModelAdmin):
-    list_display = ('emitente_id', 'serie', 'numero', 'numero_carta_correcao', 'chave', 'data_emissao', 'situacao',
+    list_display = ('emitente_id', 'serie', 'numero', 'numero_carta_correcao', 'chave', 'data_emissao', 'status_nfe',
                     'status_sefaz')
 
 
