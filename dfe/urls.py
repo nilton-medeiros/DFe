@@ -8,7 +8,7 @@ from emitentes.api.viewsets import EmitenteViewSet
 from nfe.api.viewsets import NfeViewSet
 
 router = routers.DefaultRouter()
-router.register(r'emitente', EmitenteViewSet)
+router.register(r'emitentes', EmitenteViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
