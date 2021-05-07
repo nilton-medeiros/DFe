@@ -1,8 +1,8 @@
 from typing import Dict, Union
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
 def enviar_nfe(data):
@@ -19,7 +19,7 @@ def enviar_nfe(data):
         respond = {
             "http_code": 400,
             "codigo": "json_parse_error",
-            "mensagem": "Bad Request - O recebido texto não é um formato json válido"
+            "mensagem": "Bad Request - O texto recebido não é um formato json válido"
         }
 
     return respond

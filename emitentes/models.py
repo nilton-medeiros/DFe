@@ -1,8 +1,5 @@
-from uuid import uuid4
-
-from django.db import models
 from django.contrib.auth.models import User
-from django.db.models import ForeignKey, CharField
+from django.db import models
 
 
 def emitente_upload_file(instance, filename):
@@ -14,7 +11,7 @@ def emitente_upload_file(instance, filename):
 
 
 class Emitente(models.Model):
-    user: ForeignKey = models.ForeignKey(User, on_delete=models.RESTRICT)
+    user = models.ForeignKey(User, on_delete=models.RESTRICT)
     nome = models.CharField('Nome', max_length=60)
     cnpj = models.CharField('CNPJ', max_length=14, null=True, blank=True)
     inscricao_estadual = models.CharField('Inscrição Estadual', max_length=14, null=True, blank=True)

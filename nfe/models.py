@@ -1,7 +1,5 @@
-from django.db import models
 from uuid import uuid4
-
-from django.db.models import ForeignKey
+from django.db import models
 
 from emitentes.models import Emitente
 
@@ -23,7 +21,7 @@ def nfe_upload_file(instance, filename):
 class Nfe(models.Model):
     # Este id do tipo token (UUID4) é retornado ao solicitante como ref (referencia) a esta NFe para consultas
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    emitente: ForeignKey = models.ForeignKey(Emitente, on_delete=models.CASCADE)
+    emitente = models.ForeignKey(Emitente, on_delete=models.CASCADE)
     serie = models.IntegerField('Série NFe', default=1)
     numero = models.IntegerField('Número NFe', default=1)
     numero_carta_correcao = models.IntegerField('Número Carta Cor.', default=0)

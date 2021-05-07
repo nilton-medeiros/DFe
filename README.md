@@ -15,7 +15,8 @@ Webservice (API) para emissão de Documentos Eletrônicos Fiscais (DFe)
 - [DjangoRestFramework](https://www.django-rest-framework.org/ "Django REST Framework")
 - [Python-Decouple](https://pypi.org/project/python-decouple/ "Python-decouple")
 - [dj-database-url](https://pypi.org/project/dj-database-url/ "Use Database URLs in your Django Application")
-
+- [PyNFe](https://github.com/msbrogli/PyNFe/ "pip install git+https://github.com/msbrogli/PyNFe") - Atualizado para a versão 4.00 NF-e/NFC-e  
+(pip install git+https://github.com/msbrogli/PyNFe)
 
 ## Como rodar o projeto?
 
