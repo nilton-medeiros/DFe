@@ -62,6 +62,8 @@ db.sqlite3
 db.sqlite3-journal
 db.dfe
 migrations/
+emitentes/migrations/
+nfe/migrations/
 
 # Flask stuff:
 instance/
