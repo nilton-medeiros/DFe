@@ -70,3 +70,14 @@ class MDFeEmiteSerializer(serializers.ModelSerializer):
             'mdfe_serie_homologacao',
             'mdfe_numero_homologacao',
         )
+
+
+class CertificadoA1Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Emitente
+        fields = (
+            'id',
+            'certificado_a1',
+            'certificado_senha',
+            'certificado_validade',
+        )

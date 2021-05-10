@@ -26,14 +26,14 @@ class Emitente(models.Model):
     telefones = models.CharField(max_length=60, null=True, blank=True)
     email = models.EmailField('E-mail', max_length=100, null=True, blank=True)
     certificado_a1 = models.FileField(upload_to=emitente_upload_file, null=True, blank=True)
-    certificado_pw = models.CharField('Senha do Certificado', max_length=128, null=True, blank=True)
+    certificado_senha = models.CharField('Senha do Certificado', max_length=128, null=True, blank=True)
 
     """
     # certificado_validade
     # Este campo deve ser readonly para o usuário que consome a API, somente a API ao ler o arquivo de certificado
     # (certificado_a1) obtém a validade para salvar neste campo
     """
-    certificado_validade = models.DateTimeField('Validade do Certificado', editable=False, null=True, blank=True)
+    certificado_validade = models.DateTimeField('Validade do Certificado', null=True, blank=True)
     logotipo_dfe = models.ImageField('Logotipo DFe', upload_to=emitente_upload_file, null=True, blank=True)
 
     # DFe's - Controle de Emissões, séries e numeração ambiente Produção & Homologação (testes)

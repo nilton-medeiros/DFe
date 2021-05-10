@@ -61,6 +61,8 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 db.dfe
+migrations/
+
 # Flask stuff:
 instance/
 .webassets-cache
