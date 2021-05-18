@@ -139,3 +139,5 @@ temp/
 
 # Client files
 client_files/
+
+.DFe/*
