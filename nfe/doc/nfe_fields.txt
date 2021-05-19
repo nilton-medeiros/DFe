@@ -1,0 +1,56 @@
+{
+  "emitente": {                                     # emit:     Grupo C. Identificação do Emitente da Nota Fiscal eletrônica
+    "razao_social": string,                         # xNome:    [2-60]
+    "nome_fantasia": string,                        # xFant:    [1-60]  Opcional
+    "cnpj": string,                                 # CNPJ:     [14]    Apenas números
+    "cpf": string,                                  # CPF:      [11]    Apenas números. Informar o CPF do remetente somente para NFe AVULSA, omitir se não for NFe avulsa
+    "endereco_logradouro": string,                  # xLgr:     [2-60]
+    "endereco_numero": string,                      # nro:      [1-60]
+    "endereco_complemento": string,                 # xCpl:     [1-60]  Opcional
+    "endereco_bairro": string,                      # xBairro:  [[2-60]
+    "endereco_municipio": string,                   # xMun:     [2-60]  Informar o município exatamente conforme lista IBGE (ver aqui)
+    "endereco_cod_municipio": string,               # cMun:     [7]     Opcional: Se omitido, será encontrado automaticamente pelo 'endereco_municipio'
+    "endereco_uf": string,                          # UF:       [2]
+    "endereco_cep": string,                         # CEP:      [8]
+    "endereco_telefone": string                     # fone:     [6-14]
+    "inscricao_estadual": string,                   # IE:       [2-14]
+    "inscricao_municipal": string,                  # IM:       [1-15]  Opcional: Informado na emissão de NF-e conjugada, ver manual
+    "cnae_fiscal": string,                          # CNAE:     [7]     Opcional: apenas números e se inscricao_municipal for informado
+    "inscricao_estadual_subst_tributaria": string,  # IEST:     [2-14]  Opcional: Ver manual
+    "codigo_de_regime_tributario": string           # CRT:      [1]     1=simples nacional, 3=normal ou 2=simples nacional, excesso sublimite de receita bruta
+  },
+  "destinatario": {                                 # dest:     Grupo E. Identificação do Destinatário da Nota Fiscal eletrônica
+    "razao_social": string,                         # xNome:    [2-60]
+    "email": string,                                # email:    [1-60]  Opcional
+    "cnpj": string,                                 # CNPJ:     [14]    Apenas números (Os campos CNPJ, CPF e idEstrangeiro são excludentes, é um ou outro)
+    "cpf": string,                                  # CPF:      [11]    Apenas números. Omitir se CNPJ ou idEstrangeiro for informado
+    "endereco_logradouro": string,                  # xLgr:     [2-60]
+    "endereco_numero": string,                      # nro:      [1-60]
+    "endereco_complemento": string,                 # xCpl:     [1-60]  Opcional
+    "endereco_bairro": string,                      # xBairro:  [[2-60]
+    "endereco_municipio": string,                   # xMun:     [2-60]  Informar o município exatamente conforme lista IBGE (ver aqui)
+    "endereco_cod_municipio": string,               # cMun:     [7]     Opcional: Se omitido, será encontrado automaticamente pelo 'endereco_municipio'
+    "endereco_uf": string,                          # UF:       [2]
+    "endereco_cep": string,                         # CEP:      [8]
+    "endereco_telefone": string,                    # fone:     [6-14]
+    "indicador_ie": string,                         # indIEDest [1]     1 contribuinte, 2 contribuinte isento e 9 não contribuinte, ver manual
+    "inscricao_estadual": string,                   # IE:       [2-14]  Opcional se o campo indicador_ie for 2 ou 9 se exterior, ver manual
+    "inscricao_municipal": string,                  # IM:       [1-15]  Opcional, ver manual
+    "inscricao_suframa": string                     # ISUF:     [8-9]   Obrigatório nas operações que se beneficiam de incentivos fiscais existentes nas áreas sob controle da SUFRAMA
+  }
+  "nota_fiscal": {                                  # ide:      Grupo B. Identificação da Nota Fiscal eletrônica
+    "data_emissao": date,                           # dhEmi:    [10]    Formato AAAA-MM-DD
+    "natureza_operacao": string,                    # natOp:    [1-60]
+    "tipo_documento": int,                          # tpNF:     [1]     0-Entrada, 1-Saída
+    "processo_emissao": int,                        # procEmi:  [1]     Opcional. Se omitido assumirá 0. 0=Emissão de NF-e com aplicativo do contribuinte, 1=Emissão de NF-e avulsa pelo Fisco, 2=Emissão de NF-e avulsa, pelo contribuinte com seu certificado digital, através do site do Fisco, 3=Emissão NF-e pelo contribuinte com aplicativo fornecido pelo Fisco
+    "tipo_impressao_danfe": int,                    # tpImp:    [1]     Opcional. Se omitido assumirá 1. 0=Sem geração de DANFE, 1=DAMFE normal, Retrato, 2=DANFE normal, Paisagem, 3=DANFE Simplificado
+    "tipo_pagamento": int,                          # tPag:     [2]     Ver Manual. 01..05, 10..13, 15..19, 90 e 99
+    "forma_emissao": int,                           # tpEmis:   [1]     1= Normal, 2=Contingencia, 3=Contingencia com SCAN, 4=Contingencia via DPEC, 5=Contingencia FS-DA
+    "finalidade_emissao": int,                      # finNFe:   [1]     1=NF-e normal, 2=NF-e complementar, 3=NF-e de ajuste
+    "cliente_final": int,                           # indFinal: [1]     0=Normal, 1=Consumidor final
+    "indicador_presencial": int,                    # indPres:  [1]     0=Não se aplica (por exemplo, Nota Fiscal complementar ou deajuste), 1=Operação presencial, 2=Operação não presencial, pela Internet, 3=Operação não presencial, Teleatendimento, 4=NFC-e em operação com entrega a domicílio, 5=Operação presencial, fora do estabelecimento, 9=Operação não presencial, outros.
+    "indicador_destino": int,                       # idDest:   [1]     1=Operação interna, 2=Operação interestadual, 3=Operação com exterior
+    "municipio": string,                            # cMunFG:   [7]     Código IBGE do município de ocorrência do fator gerador ICMS. Opcional: Se omitido será usado o próprio código município do emitente
+    ""
+  }
+}
